@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --title-color: #F5F5F5;
+    --background-color: #363062;
+    --text-color: #F5F5F5;
+    --border-color: rgb(49, 207, 17);
+    --border-color--focus:#1418f4;
+    --button-color: #363062;
+    --background-container: #F99417;
+
+}
+body{
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10px 10px rgba(2, 70, 41, 0.5);
+    height: 550px;
+    width: 500px;
+    border-radius: 20px;
+    background-color: var(--background-container);
+}
+.container .form-login{
+    margin-top: -100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-login h1{
+    text-align: center;
+    margin-bottom: 37px;
+    color: var(--title-color);
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+
+}
+.container-input{
+    width: 90%;
+    min-width: 200px;
+    height: 40px;
+    position: relative;
+    margin-bottom: 30px;
+}
+.container-input input{
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    outline: none;
+}
+.container-input input:first-of-type {
+    padding-left: 20px;
+  }
+  .container-input img{
+    position: absolute;
+    right: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+.container-input label{
+    color: var(--text-color);
+    position: absolute;
+    z-index: 1;
+    margin-top: 8px;
+    left: 15px;
+    pointer-events: none;
+    font-size: 1.2rem;
+    background-color: var(--background-container);
+    transition:  0.2s ease-out;
+}
+.container-input input:focus{
+    border-color: var(--border-color--focus);
+}
+.container-input input:hover~label,
+ input:not(:placeholder-shown)~label{
+    margin-top: -11px;
+    padding: 0 8px;
+    left: 14px;
+    border-radius: 20px;
+    font-size: 17px;
+}
+.container-input input:focus~label{
+    text-align: center;
+    margin-top: -10px;
+    left: 14px;
+    border-radius: 20px;
+    font-size: 17px;
+}
+.container-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-login button{
+    width: 60%;
+    height: 40px;
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.form-login button:hover{
+    background-color: rgb(255, 255, 255);
+    color:var(--button-color); ;
+}
+.link{
+    width: 90%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.link a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+}
+.link a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--button-color);
+}
