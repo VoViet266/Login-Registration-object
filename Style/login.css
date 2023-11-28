@@ -116,6 +116,7 @@ body{
     border: none;
     border-radius: 20px;
     font-size: 1.4rem;
+    letter-spacing: 6px;
     cursor: pointer;
 }
 .form-login button:hover{
