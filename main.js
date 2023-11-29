@@ -2,17 +2,19 @@
 var eye = document.getElementById('eye');
 var password = document.getElementById('password');
 eye.addEventListener('click', function(){
+  // Hien thi mat khau
     if(password.type === 'password'){
         password.type = 'text';
         eye.src = 'image/hidden.png';
     }
+    // An mat khau
     else{
         password.type = 'password';
         eye.src = 'image/eye.png';
     }
 });
   //Ham luu vao localStorage
-function SetLocalStorage() {
+function setLocalStorage() {
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -37,18 +39,7 @@ function checkEmail() {
     return false;
   }
 }
-// Ham kiem tra  thong tin nhap vao 
-function checkEmptyError(inputs) {
-    inputs.forEach(input => {
-      // Kiem tra rong
-      if (input.value.trim() === '') {
-        return true;
-      }
-      else {
-        return false;
-      }
-    });
-}
+// Ham kiem tra dang nhap
 function getLocalStorage() {
   const username = document.getElementById('username');
   const password = document.getElementById('password');
@@ -60,6 +51,37 @@ function getLocalStorage() {
     return false;
   }
 }
+// Ham kiem tra  thong tin nhap vao 
+function checkEmptyError(inputs) {
+  inputs.forEach(input => {
+    input.value = input.value.trim();
+    // Kiem tra rong
+    if (input.value === '') {
+      showError(input, `${input.id} can't be empty!!`);
+      console.log('Empty');
+      return true;
+    }
+    else {
+      showSuccess(input);
+      console.log('Not Empty');
+      return false;
+    }
+  });
+}
+// Ham hien thi loi
+function showError(input, message) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector('small');
+  formControl.classList.add('error');
+  small.innerText = message;
+}
+// Ham hien thi thanh cong
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector('small');
+  formControl.classList.remove('error');
+  small.innerText = '';
+}
   // Xu ly su kien click register
 const button = document.getElementById('btn-register');
 button.addEventListener('click', function(e) {
@@ -67,18 +89,17 @@ button.addEventListener('click', function(e) {
   const username = document.getElementById('username');
   const email = document.getElementById('email');
   const password = document.getElementById('password');
-  if (checkEmptyError([username, email, password])) {
-    alert('Vui long nhap day du thong tin');
-    return;
-  }
-  else {
-    if (checkEmail()) {
-      SetLocalStorage();
-      alert('Đăng ký thành công!!!!!!');
-      window.location.href = 'login.html';
+  checkEmptyError([username, email, password]);
+  //điều kiện input 
+  if(username.value !== '' && email.value !== '' && password.value !== ''){
+    if(!checkEmail()){
+      showError(email, 'Email isn\'t valid');
     }
-    else {
-      alert('Email khong hop le');
+    else{
+      alert('Successful registration!');
+      setLocalStorage();
+      console.log('Successful registration!');
+      window.location.href = 'login.html';
     }
   }
 });
@@ -87,15 +108,24 @@ function login(e){
   event.preventDefault();
 if(username.value !== '' && password.value !== ''){
   if(getLocalStorage()){
-    alert('Dang nhap thanh cong');
+    alert('Successful login');
     window.location.href = 'home.html';
   }
   else{
-    alert('Dang nhap that bai');
+    alert('Successful login');
   }
 }
 else{
-  alert('Vui long nhap day du thong tin');
+  checkEmptyError([username, password]);
+  if(username.value !== '' && password.value !== ''){
+    if(getLocalStorage()){
+      alert('Successful login');
+      window.location.href = 'home.html';
+    }
+    else{
+      alert('fail login');
+    }
+  }
 }
 }
 

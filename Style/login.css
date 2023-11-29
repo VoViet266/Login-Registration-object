@@ -119,6 +119,14 @@ body{
     letter-spacing: 6px;
     cursor: pointer;
 }
+.container-input small{
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    left: 5px;
+    margin-top: 45px;
+    color: red;
+}
 .form-login button:hover{
     background-color: rgb(255, 255, 255);
     color:var(--button-color); ;
